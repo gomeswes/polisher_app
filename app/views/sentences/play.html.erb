@@ -1,11 +1,12 @@
 <script type="text/javascript">
   $(document).ready(function(){
-    controller.initControls($('#inpEnglish'), $('#inpPolish'), $('#inpPolishReadonly'), $('#btnCheck'), $('#hidePolishSentence'))  
+    controller.initControls($('#inpEnglish'), $('#inpPolish'), $('#inpPolishReadonly'), $('#btnCheck'), $('#showPolishSentence'))  
     controller.initSentence('<%= @sentence.english %>', '<%= @sentence.polish %>', '<%= @sentence.id %>')
     controller.setCategoryId('<%= @category_id %>')
     controller.initPolisher(polisher)
     $('.alert').alert()
     $().alert('close')
+    $('#navbar').hide()
   });
   var polisher = (function(){
     var publicApi = {}
@@ -20,14 +21,14 @@
 
 
 
-<div class="form-group form-check">
-  <input type="checkbox" class="form-check-input" id="hidePolishSentence">
-  <label class="form-check-label" for="exampleCheck1">Hide polish sentence</label>
+<div class="form-group form-check mt-5">
+  <input type="checkbox" class="form-check-input" id="showPolishSentence">
+  <label class="form-check-label" for="exampleCheck1">Show polish sentence</label>
 </div>
 <div class="form-group col-md-12">
-  <input id="inpEnglish" class="form-control-plaintext" readonly value="" />
+  <input id="inpEnglish" class="form-control form-control-plaintext mb-3" readonly value="" />
+  <input id="inpPolishReadonly" class="form-control form-control-plaintext mb-3" style="display:none" readonly value='' />
   <input id="inpPolish"  class="form-control" placeholder="Write in polish here" autocomplete="off"/>
-  <input id="inpPolishReadonly" class="form-control-plaintext" readonly value='' />
   
   <a href="#" id="btnCheck" class="btn btn-primary pull-right mt-3">Check!</a>
 </div>

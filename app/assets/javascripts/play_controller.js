@@ -6,7 +6,7 @@ var controller = (function(){
   ctrlEnglish = {}
   ctrlPolish = {}
   ctrlPolishReadonly = {}
-  ctrlHidePlSentence = {}
+  ctrlShowPlSentence = {}
   checkButton = {}
   svcPolisher = {}
 
@@ -24,14 +24,14 @@ var controller = (function(){
     clearInput()
   }
 
-  publicApi.initControls = function(inpEnglish, inpPolish, inpPolishReadonly, btnCheck, inpHidePlSentence){
+  publicApi.initControls = function(inpEnglish, inpPolish, inpPolishReadonly, btnCheck, inpShowPlSentence){
     ctrlEnglish = inpEnglish
     ctrlPolish = inpPolish
     ctrlPolishReadonly = inpPolishReadonly
     checkButton = btnCheck
-    ctrlHidePlSentence = inpHidePlSentence
+    ctrlShowPlSentence = inpShowPlSentence
 
-    initHidePlSentence()
+    initShowPlSentence()
     initCheckAction()
   }
 
@@ -46,24 +46,22 @@ var controller = (function(){
     ctrlPolishReadonly.val(value)
   }
 
-  var initHidePlSentence = function(){
-    ctrlHidePlSentence.on('click', checkIfShowPlSentence)
+  var initShowPlSentence = function(){
+    ctrlShowPlSentence.on('click', checkIfShowPlSentence)
   }
   
   var checkIfShowPlSentence = function() {
-    if (ctrlHidePlSentence.is(':checked')){
-      console.log('hiding')
-      ctrlPolishReadonly.hide()
+    if (ctrlShowPlSentence.is(':checked')){
+      ctrlPolishReadonly.show('fast')
     }
     else {
-      ctrlPolishReadonly.show('fast')
+      ctrlPolishReadonly.hide('fast')
     } 
   }
   var checkInputValue = function(){
     var result = polisher.checkIsCorrect(ctrlPolishReadonly.val(), ctrlPolish.val())
     if (result){
       loadNewSentence()
-      console.log('ok')
     }
     else {
       console.log('Pls try again')
@@ -71,7 +69,6 @@ var controller = (function(){
   }
 
   var loadNewSentence = function(){
-    console.log(ids)
     $.ajax({
       url: '/sentences/get_new',
       method: 'GET',
