@@ -2,6 +2,7 @@
   <div class='form-group'>
     <label><%= s.id %></label>|
     <label><%= s.english %></label>|
-    <label><%= s.polish %></label>
+    <label><%= s.polish %></label>|
+    <label><%= s.category.name if s.category %></label>
   </div>
 <% end %>

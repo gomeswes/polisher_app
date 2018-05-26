@@ -2,6 +2,7 @@
   $(document).ready(function(){
     controller.initControls($('#inpEnglish'), $('#inpPolish'), $('#inpPolishReadonly'), $('#btnCheck'))  
     controller.initSentence('<%= @sentence.english %>', '<%= @sentence.polish %>', '<%= @sentence.id %>')
+    controller.setCategoryId(<%= @category_id %>)
     controller.initPolisher(polisher)
   });
   var polisher = (function(){

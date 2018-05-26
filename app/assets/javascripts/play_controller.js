@@ -1,12 +1,14 @@
 var controller = (function(){
   var publicApi = {}
   sentence = {}
+  categoryId = ''
   ids = []
   ctrlEnglish = {}
   ctrlPolish = {}
   ctrlPolishReadonly = {}
   checkButton = {}
   svcPolisher = {}
+
 
   publicApi.initPolisher = function(polisher){
     svcPolisher = polisher;
@@ -27,6 +29,10 @@ var controller = (function(){
     ctrlPolishReadonly = inpPolishReadonly
     checkButton = btnCheck
     initCheckAction()
+  }
+
+  publicApi.setCategoryId = function(id){
+    categoryId = id
   }
 
   publicApi.setEnglish = function(value){
@@ -52,7 +58,7 @@ var controller = (function(){
     $.ajax({
       url: '/sentences/get_new',
       method: 'GET',
-      data: {ids_to_ignore: ids},
+      data: {ids_to_ignore: ids, category_id: categoryId},
       dataType: 'json'
     })
     .done(initNewSentence)

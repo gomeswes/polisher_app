@@ -5,6 +5,7 @@ class SentencesController < ApplicationController
   def create
     sentence_params = params["sentence"]
     sentence = Sentence.new sentence_params["english"], sentence_params["polish"]
+    sentence.category = Category.where(id: sentence_params["category_id"]).first
     sentence.save!
   end
 
@@ -17,18 +18,27 @@ class SentencesController < ApplicationController
     if cat == nil
       @sentence = Sentence.first if cat == nil
     else
-      @sentence = Sentence.where(:category => cat)
+      cat = Category.where(name: cat).first
+      @sentence = cat.sentences.first
     end
     @sentence = Sentence.new '','' unless @sentence
+    if @sentence.category 
+      @category_id = @sentence.category.id
+    else
+      @category_id = ''
+    end
+
     @categories = Category.all.map {|c| c.name }.to_a
   end
 
   def get_new
     ids_to_ignore= params["ids_to_ignore"]
-    sentence = Sentence.where("id NOT IN (?)", ids_to_ignore).first
+    category_id = params["category_id"]
+    sentence = Sentence.where("id NOT IN (?)", ids_to_ignore)
+    sentence = sentence.where("category_id = (?)", category_id) if category_id
     respond_to do |format|
       format.json do
-        render json: sentence
+        render json: sentence.first
       end
     end
   end
