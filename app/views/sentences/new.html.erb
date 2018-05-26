@@ -1,4 +1,41 @@
-<%= form_for "sentence", url: "/sentences/create" do |f| %>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#btnCreate").on('click', createSentence)
+    $("#sentence_polish").on('keypress', function(evt){
+      if (evt.which==13){
+        createSentence();
+      }
+    })
+  })
+
+  var createSentence = function(){
+    console.log('kakaka')
+    var english = $("#sentence_english");
+    var polish = $("#sentence_polish");
+    var category_id = $("#category");
+    var sentence = {english: english.val(), polish: polish.val(), category_id: category_id.val()}
+
+    $.ajax({
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      url: "/sentences/create",
+      method: "POST",
+      data: {sentence: sentence}
+    })
+    .done(function(data){
+      english.val('')
+      polish.val('')
+      english.focus()
+    })
+    .fail(function(data){
+      console.log(data)
+    })
+  };
+</script>
+
+<%= form_for "sentence", url: "", html: {id: "post-form"} do |f| %>
+  <div class="form-group row">
+    <%= f.collection_select(:category_id, Category.order(:name).all, :id, :name, {}, {:class=>"form-control", :id => "category"}) %>
+  </div>
   <div class="form-group row">
     <%= f.text_field :english, class: "form-control col-md-12", placeholder: "English Sentence" %>
   </div>
@@ -7,10 +44,6 @@
   </div>
 
   <div class="form-group row">
-    <%= f.collection_select(:category_id, Category.order(:name).all, :id, :name, {}, {:class=>"form-control"}) %>
-  </div>
-
-  <div class="form-group row">
-    <%= f.submit "Create", class: "btn btn-primary pull-right" %>
+    <a href="javascript:void(0);" id='btnCreate' class="btn btn-primary pull-right">Create</a>
   </div>
 <% end %>
