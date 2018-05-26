@@ -6,6 +6,7 @@ var controller = (function(){
   ctrlEnglish = {}
   ctrlPolish = {}
   ctrlPolishReadonly = {}
+  ctrlHidePlSentence = {}
   checkButton = {}
   svcPolisher = {}
 
@@ -23,11 +24,14 @@ var controller = (function(){
     clearInput()
   }
 
-  publicApi.initControls = function(inpEnglish, inpPolish, inpPolishReadonly, btnCheck){
+  publicApi.initControls = function(inpEnglish, inpPolish, inpPolishReadonly, btnCheck, inpHidePlSentence){
     ctrlEnglish = inpEnglish
     ctrlPolish = inpPolish
     ctrlPolishReadonly = inpPolishReadonly
     checkButton = btnCheck
+    ctrlHidePlSentence = inpHidePlSentence
+
+    initHidePlSentence()
     initCheckAction()
   }
 
@@ -42,6 +46,19 @@ var controller = (function(){
     ctrlPolishReadonly.val(value)
   }
 
+  var initHidePlSentence = function(){
+    ctrlHidePlSentence.on('click', checkIfShowPlSentence)
+  }
+  
+  var checkIfShowPlSentence = function() {
+    if (ctrlHidePlSentence.is(':checked')){
+      console.log('hiding')
+      ctrlPolishReadonly.hide()
+    }
+    else {
+      ctrlPolishReadonly.show('fast')
+    } 
+  }
   var checkInputValue = function(){
     var result = polisher.checkIsCorrect(ctrlPolishReadonly.val(), ctrlPolish.val())
     if (result){

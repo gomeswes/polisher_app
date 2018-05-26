@@ -28,7 +28,7 @@ class SentencesController < ApplicationController
       @category_id = ''
     end
 
-    @categories = Category.all.map {|c| c.name }.to_a
+    @categories = Category.order(:name).all.map {|c| c.name }.to_a
   end
 
   def get_new
