@@ -22,7 +22,7 @@ class SentencesController < ApplicationController
       @sentence = cat.sentences.first
     end
     @sentence = Sentence.new '','' unless @sentence
-    if @sentence.category 
+    if @sentence.category
       @category_id = @sentence.category.id
       @total_category_sentences = @sentence.category.sentences.size
     else

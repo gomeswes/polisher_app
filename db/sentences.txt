@@ -8,3 +8,13 @@ Communication|Here you are, your order is ready.|Proszę, pani zamówienie jest 
 Communication|Excuse me, is this table free? I'm sorry, I don't know.|Przepraszam, czy ten stolik jest wolny? Nie wiem, przepraszam.
 Communication|Thankyou for the information.|Dziękuję za informację.
 Communication|Thank you very much. You're welcome.|Dziękuję bardzo. Nie ma za co.
+Communication|How are you? I'm fine thanks.|Co słychać? W porządku, dzięki.
+Communication|Do you want a coffee? Yes, please.|Czy chesz kawę? Tak, poproszę.
+Communication|Is there any bread? No, there isn't.|Czy jest chleb?Nie, nie ma.
+Communication|I'm at home.|Jestem w domu.
+Communication|Do you have some free time?|Czy masz wolny czas?
+Communication|He doesn't know where the bank is.|On nie wie, gdzie jest bank.
+Communication|She is very young|Ona jest bardzo młoda
+Communication|Is this baby yours? Yes, it's mine.|Czy to jest twoje dziecko? Tak, ono jest moje.
+Communication|We have a good life|Mamy dobre zycie.
+Communication|Are you siblings?|Czy jesteście rodzeństwem?

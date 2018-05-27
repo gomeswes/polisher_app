@@ -21,15 +21,20 @@ var controller = (function(){
     sentence.english = english
     sentence.polish = polish
     sentence.id = id
-    setupIds(id)
+    setupIndex()
     publicApi.setEnglish(sentence.english)
     publicApi.setHiddenPolish(sentence.polish)
     clearInput()
+
   }
 
-  var setupIds = function(id){
-    ids.push(id)
-    ctrlIndex.text(ids.length)
+  publicApi.resetIds = function(){
+    ids = []
+    setupIndex()
+  }
+
+  var setupIndex = function(){
+    ctrlIndex.text(ids.length+1)
   }
 
   publicApi.initControls = function(inpEnglish, inpPolish, inpPolishReadonly, btnCheck, inpShowPlSentence, alertSuccess, alertFail, index){
@@ -42,13 +47,12 @@ var controller = (function(){
     ctrlAlertFail = alertFail
     ctrlIndex = index
 
+    
     initShowPlSentence()
     initCheckAction()
   }
 
   publicApi.setCategoryId = function(id){
-    if (categoryId != id)
-      ids = []
     categoryId = id
   }
 
@@ -74,7 +78,9 @@ var controller = (function(){
   var checkInputValue = function(){
     var result = polisher.checkIsCorrect(ctrlPolishReadonly.val(), ctrlPolish.val())
     if (result){
+      ids.push(sentence.id)
       loadNewSentence()
+      
       var cloneAlert = ctrlAlertSuccess.clone()
       cloneAlert.insertAfter(ctrlAlertSuccess)
       cloneAlert.show()

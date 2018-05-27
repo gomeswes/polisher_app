@@ -3,6 +3,7 @@
     controller.initControls($('#inpEnglish'), $('#inpPolish'), $('#inpPolishReadonly'), $('#btnCheck'), $('#showPolishSentence'), $("#alertSuccess"), $("#alertFail"), $("#index"))
     controller.initSentence('<%= @sentence.english %>', '<%= @sentence.polish %>', '<%= @sentence.id %>')
     controller.setCategoryId('<%= @category_id %>')
+    controller.resetIds()
     controller.initPolisher(polisher)
     $("#alertSuccess, #alertFail").hide()
     $('#navbar').hide()
