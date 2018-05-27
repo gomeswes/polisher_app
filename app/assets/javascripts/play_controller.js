@@ -9,6 +9,9 @@ var controller = (function(){
   ctrlShowPlSentence = {}
   checkButton = {}
   svcPolisher = {}
+  ctrlAlertSuccess = {}
+  ctrlAlertFail = {}
+  ctrlIndex = {}
 
 
   publicApi.initPolisher = function(polisher){
@@ -18,24 +21,34 @@ var controller = (function(){
     sentence.english = english
     sentence.polish = polish
     sentence.id = id
-    ids.push(id)
+    setupIds(id)
     publicApi.setEnglish(sentence.english)
     publicApi.setHiddenPolish(sentence.polish)
     clearInput()
   }
 
-  publicApi.initControls = function(inpEnglish, inpPolish, inpPolishReadonly, btnCheck, inpShowPlSentence){
+  var setupIds = function(id){
+    ids.push(id)
+    ctrlIndex.text(ids.length)
+  }
+
+  publicApi.initControls = function(inpEnglish, inpPolish, inpPolishReadonly, btnCheck, inpShowPlSentence, alertSuccess, alertFail, index){
     ctrlEnglish = inpEnglish
     ctrlPolish = inpPolish
     ctrlPolishReadonly = inpPolishReadonly
     checkButton = btnCheck
     ctrlShowPlSentence = inpShowPlSentence
+    ctrlAlertSuccess = alertSuccess
+    ctrlAlertFail = alertFail
+    ctrlIndex = index
 
     initShowPlSentence()
     initCheckAction()
   }
 
   publicApi.setCategoryId = function(id){
+    if (categoryId != id)
+      ids = []
     categoryId = id
   }
 
@@ -62,9 +75,20 @@ var controller = (function(){
     var result = polisher.checkIsCorrect(ctrlPolishReadonly.val(), ctrlPolish.val())
     if (result){
       loadNewSentence()
+      var cloneAlert = ctrlAlertSuccess.clone()
+      cloneAlert.insertAfter(ctrlAlertSuccess)
+      cloneAlert.show()
+      setTimeout(function(){
+        cloneAlert.hide('fast')
+      },1500)
     }
     else {
-      console.log('Pls try again')
+      var cloneAlert = ctrlAlertFail.clone()
+      cloneAlert.insertAfter(ctrlAlertFail)
+      cloneAlert.show()
+      setTimeout(function(){
+        cloneAlert.hide('fast')
+      },1500)
     }
   }
 

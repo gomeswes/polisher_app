@@ -1,11 +1,10 @@
 <script type="text/javascript">
   $(document).ready(function(){
-    controller.initControls($('#inpEnglish'), $('#inpPolish'), $('#inpPolishReadonly'), $('#btnCheck'), $('#showPolishSentence'))  
+    controller.initControls($('#inpEnglish'), $('#inpPolish'), $('#inpPolishReadonly'), $('#btnCheck'), $('#showPolishSentence'), $("#alertSuccess"), $("#alertFail"), $("#index"))
     controller.initSentence('<%= @sentence.english %>', '<%= @sentence.polish %>', '<%= @sentence.id %>')
     controller.setCategoryId('<%= @category_id %>')
     controller.initPolisher(polisher)
-    $('.alert').alert()
-    $().alert('close')
+    $("#alertSuccess, #alertFail").hide()
     $('#navbar').hide()
   });
   var polisher = (function(){
@@ -29,12 +28,19 @@
   <input id="inpEnglish" class="form-control form-control-plaintext mb-3" readonly value="" />
   <input id="inpPolishReadonly" class="form-control form-control-plaintext mb-3" style="display:none" readonly value='' />
   <input id="inpPolish"  class="form-control" placeholder="Write in polish here" autocomplete="off"/>
-  
-  <a href="#" id="btnCheck" class="btn btn-primary pull-right mt-3">Check!</a>
+  <label class="pull-right small" style="float:right">
+    <span id="index">1</span>/<%= @total_category_sentences %>
+  </label>
+
+  <a href="javascript:void(0);" id="btnCheck" class="btn btn-primary mt-3">Check!</a>
 </div>
 
-<div class="alert alert-primary mb-3 alert-dismissible" style="display:none" role="alert">
-  <span class="alert-link">Well Done!</span> No more items left in his category.
+<div class="alert alert-success" id="alertSuccess" role="alert">
+  <strong>Well done!</strong> You got right.
+</div>
+
+<div class="alert alert-danger" id="alertFail" role="alert">
+  <strong>Try again!</strong> Not quite right.
 </div>
 
 <div>
@@ -45,9 +51,7 @@
     <% @categories.each do |category| %>
       <div class="col-sm-3">
         <div class="card text-center bg-success mb-3">
-          <div class="card-body">
-            <a href="/sentences/play/<%=category%>" class="btn btn-success"><%= category %></a>
-          </div>
+            <a class="btn btn-success card-body" href="/sentences/play/<%=category%>" class="btn btn-success"><%= category %></a>
         </div>
       </div>
     <% end %>

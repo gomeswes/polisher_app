@@ -24,8 +24,10 @@ class SentencesController < ApplicationController
     @sentence = Sentence.new '','' unless @sentence
     if @sentence.category 
       @category_id = @sentence.category.id
+      @total_category_sentences = @sentence.category.sentences.size
     else
       @category_id = ''
+      @total_category_sentences = Sentence.count
     end
 
     @categories = Category.order(:name).all.map {|c| c.name }.to_a
