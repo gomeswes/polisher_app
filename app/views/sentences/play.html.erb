@@ -43,17 +43,40 @@
   <strong>Try again!</strong> Not quite right.
 </div>
 
-<div>
-  <h4>  Categories </h4>
-</div>
-<div class="col-md-12">
-  <div class="row">
-    <% @categories.each do |category| %>
-      <div class="col-sm-3">
-        <div class="card text-center bg-success mb-3">
-            <a class="btn btn-success card-body" href="/sentences/play/<%=category%>" class="btn btn-success"><%= category %></a>
-        </div>
+
+
+
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header mb-3" id="headingOne">
+      <h5 class="mb-0" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="cursor:pointer">
+        Categories
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+    <div class="col-md-12">
+      <div class="row">
+        <% @categories.each do |category| %>
+          <div class="col-sm-3">
+            <div class="card text-center bg-success mb-3">
+                <a class="btn btn-success card-body" href="/sentences/play/<%=category%>" class="btn btn-success"><%= category %></a>
+            </div>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+    </d
+</div>
+      
+      
+    </div>
   </div>
+  <div class="card">
+  </div>
+  
+</div>
+
+
+<div>
+
 </div>
