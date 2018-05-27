@@ -1,8 +1,8 @@
 <% @sentences.each do |s| %>
   <div class='form-group'>
+    <label><%= s.category.name if s.category %></label> |
     <label><%= s.id %></label>|
     <label><%= s.english %></label>|
-    <label><%= s.polish %></label>|
-    <label><%= s.category.name if s.category %></label>
+    <label><%= s.polish %></label>
   </div>
 <% end %>

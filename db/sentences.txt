@@ -1,0 +1,10 @@
+Communication|Good morning, sir.|Dzień dobry panu.
+Communication|Hello, what are you doing?|Cześć, co robisz?
+Communication|Thank you for the meeting. Goodbye, madam|Dziękuję za spotkanie. Do widzenia pani.
+Communication|Good evening, nice to meet you, sir.|Dobry wieczór, miło mi pana poznać.
+Communication|Good night, sleep well.|Dobranoc, śpij dobrze.
+Communication|Two stamps, please.|Poproszę dwa znaczki.
+Communication|Here you are, your order is ready.|Proszę, pani zamówienie jest gotowe.
+Communication|Excuse me, is this table free? I'm sorry, I don't know.|Przepraszam, czy ten stolik jest wolny? Nie wiem, przepraszam.
+Communication|Thankyou for the information.|Dziękuję za informację.
+Communication|Thank you very much. You're welcome.|Dziękuję bardzo. Nie ma za co.
